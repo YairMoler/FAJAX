@@ -7,3 +7,11 @@ document.getElementById("password").addEventListener("change", (event) => handle
 const handleChange = (event) => {
     formValues[event.target.id] = event.target.value;
 };
+
+const tempFAJAX = () => {
+    changePage(app);
+};
+
+const logIn = () => {
+    tempFAJAX();
+};
