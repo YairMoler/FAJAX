@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+
+    <!-- Login page -->
+
+    <template id="login-page">
+        <form onsubmit="event => event.preventDefault()" action="">
+            <label for="username">username</label>
+            <input type="text" id="username" name="username" value="">
+            <label for="password">password</label>
+            <input type="password" id="password" name="password" value="">
+            <button></button>
+        </form>
+        <script src="./JS/login.js"></script>
+    </template>
+
+
+    <!-- registration page -->
+
+    <template id="registration-page">
+        <form onsubmit="event => event.preventDefault()"  action="">
+            <label for="new-username">username</label>
+            <input type="text" id="new-username" name="new-username" value="">
+            <label for="new-password">password</label>
+            <input type="password" id="new-password" name="new-password" value="">
+            <label for="confirm-password">confirm-password</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <button>Log in</button>
+        </form>
+    </template>
+</body>
+
+
+<script src="./JS/index.js"></script>
+</html>
