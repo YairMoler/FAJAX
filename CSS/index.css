@@ -5,12 +5,12 @@
 }
 
 p {
-    border: solid;
+    margin-bottom: 5px;
 }
 
 #application-text{
     width: 500px;
-    height: 100px;
+    min-height: 1000px;
     overflow-y: auto;
 }
 
