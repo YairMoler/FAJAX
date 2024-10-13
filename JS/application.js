@@ -1,16 +1,16 @@
 localStorage.setItem(
     "myItem",
     JSON.stringify([{
-        name: "Hi",
+        name: "Pizza",
         type: "Dessert",
         time: "1H",
         steps: ["1", "2", "3", "4"],
     },
     {
-        name: "Hello",
+        name: "French people",
         type: "Brunch",
         time: "10m",
-        steps: ["1", "2", "3", "3"],
+        steps: ["1. put in oven", "2. cook until well done", "3. yummy", "4. another step, step on the french"],
     }])
 );
 
