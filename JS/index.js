@@ -8,3 +8,6 @@ const changePage = (pageName) => {
 };
 changePage("login-page");
 // window.onload = (x) => changePage("login-page");
+
+let loginValues = {};
+let registerValues = {};
