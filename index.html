@@ -13,9 +13,9 @@
     <template id="login-page">
         <form onsubmit="event => event.preventDefault()" action="">
             <label for="username">username</label>
-            <input type="text" id="username" name="username" value="">
+            <input minlength="3" type="text" id="username" name="username" value="">
             <label for="password">password</label>
-            <input type="password" id="password" name="password" value="">
+            <input minlength="3" type="password" id="password" name="password" value="">
             <button></button>
         </form>
         <script src="./JS/login.js"></script>
@@ -27,13 +27,22 @@
     <template id="registration-page">
         <form onsubmit="event => event.preventDefault()"  action="">
             <label for="new-username">username</label>
-            <input type="text" id="new-username" name="new-username" value="">
+            <input minlength="3" type="text" id="new-username" name="new-username" value="">
             <label for="new-password">password</label>
-            <input type="password" id="new-password" name="new-password" value="">
+            <input minlength="3" type="password" id="new-password" name="new-password" value="">
             <label for="confirm-password">confirm-password</label>
-            <input type="password" id="confirm-password" name="confirm-password">
+            <input minlength="3" type="password" id="confirm-password" name="confirm-password">
             <button>Log in</button>
         </form>
+    </template>
+
+    <template id="application">
+        <input id="search" type="text" >
+        <div>
+            <p>Recipes will go here</p>
+            <!-- Rendering Text from JS Here -->
+        </div>
+        <button>Add Recipe</button>
     </template>
 </body>
 

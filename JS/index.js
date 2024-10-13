@@ -6,4 +6,8 @@ const changePage = (pageName) => {
     display.appendChild(clone);
 };
 
-window.onload = (x) => changePage("login-page");
+window.onload = (x) => changePage("application");
+
+
+
+
