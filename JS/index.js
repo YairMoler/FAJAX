@@ -4,6 +4,7 @@ const changePage = (pageName) => {
     let newPage = document.getElementById(pageName);
     let clone = newPage.content.cloneNode(true);
     display.appendChild(clone);
+    // console.log("hi");
 };
-
-window.onload = (x) => changePage("login-page");
+changePage("login-page");
+// window.onload = (x) => changePage("login-page");

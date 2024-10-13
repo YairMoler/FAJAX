@@ -12,13 +12,14 @@
     <!-- Login page -->
 
     <template id="login-page">
-        <form onsubmit="event => event.preventDefault()" action="">
+        <form onsubmit="logIn(event)" action="">
             <label for="username">username</label>
-            <input minlength="3" type="text" id="username" name="username" value="">
+            <input type="text" id="username" name="username" value="">
             <label for="password">password</label>
-            <input minlength="3" type="password" id="password" name="password" value="">
-            <button onclick=""></button>
+            <input type="password" id="password" name="password" value="">
+            <button onsubmit="logIn(event)">Log in</button>
         </form>
+        <button onclick="changePage('registration-page')">register</button>
         <script src="./JS/login.js"></script>
     </template>
 
@@ -26,15 +27,16 @@
     <!-- registration page -->
 
     <template id="registration-page">
-        <form onsubmit="event => event.preventDefault()"  action="">
+        <form onsubmit="register(event)"  action="">
             <label for="new-username">username</label>
-            <input minlength="3" type="text" id="new-username" name="new-username" value="">
+            <input type="text" id="new-username" name="new-username" value="">
             <label for="new-password">password</label>
-            <input minlength="3" type="password" id="new-password" name="new-password" value="">
+            <input type="password" id="new-password" name="new-password" value="">
             <label for="confirm-password">confirm-password</label>
-            <input minlength="3" type="password" id="confirm-password" name="confirm-password">
-            <button>Log in</button>
+            <input type="password" id="confirm-password" name="confirm-password">
+            <button onclick="register(event)">register</button>
         </form>
+        <script src="./JS/registration.js"></script>
     </template>
 
         <template id="application">
