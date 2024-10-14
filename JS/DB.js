@@ -65,7 +65,7 @@ class Database {
         for (let item of this.contentArr) {
             let flag = true;
             for (let property in item) {
-                if (property !== "id") {
+                if (property !== "id" && property !== "recipes") {
                     if (!compare(item[property], obj[property])) {
                         flag = false;
                     }
@@ -86,12 +86,6 @@ class DatabaseUsers extends Database {
     constructor() {
         super("users");
     }
-
-    validation(obj) {
-        for (let item in this.contentArr) {
-            if (item.name === obj.username && item.password === obj.password) return item.id;
-        }
-    }
 }
 
 class DatabaseRecipes extends Database {
@@ -103,6 +97,8 @@ class DatabaseRecipes extends Database {
 localStorage.clear();
 
 localStorage.setItem("IDsIndex", "1");
+
+localStorage.setItem("users", JSON.stringify([new User(0, "Yair", "abc")]));
 
 localStorage.setItem(
     "recipes",
@@ -124,6 +120,8 @@ const DBUsers = new DatabaseUsers();
 const DBRecipes = new DatabaseRecipes();
 console.log(JSON.parse(localStorage.getItem("recipes")));
 console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])));
+
+console.log(DBUsers.validation({ name: "Yair", password: "abc" }));
 
 function compare(a, b) {
     if (typeof a === typeof b) {
