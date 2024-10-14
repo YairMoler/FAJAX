@@ -6,7 +6,7 @@ const changePage = (pageName) => {
     display.appendChild(clone);
     // console.log("hi");
 };
-changePage("application");
+changePage("login-page");
 // window.onload = (x) => changePage("login-page");
 
 let loginValues = {};

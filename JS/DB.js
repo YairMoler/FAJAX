@@ -3,7 +3,7 @@ class User {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.recipes = [0, 2];
+        this.recipes = [0, 1];
     }
 }
 

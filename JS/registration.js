@@ -1,6 +1,6 @@
-document.getElementById("new-username").addEventListener("change", (event) => handleChangeRegister(event));
+document.getElementById("name").addEventListener("change", (event) => handleChangeRegister(event));
 
-document.getElementById("new-password").addEventListener("change", (event) => handleChangeRegister(event));
+document.getElementById("password").addEventListener("change", (event) => handleChangeRegister(event));
 
 document.getElementById("confirm-password").addEventListener("change", (event) => handleChangeRegister(event));
 
@@ -13,12 +13,12 @@ function handleChangeRegister(event) {
 // to-do: try regex
 function register(event) {
     event.preventDefault();
-    if (registerValues["new-password"] === registerValues["confirm-password"]) {
-        if (registerValues["new-password"].length >= 3 && registerValues["confirm-password"].length >= 3) {
+    if (registerValues["password"] === registerValues["confirm-password"]) {
+        if (registerValues["password"].length >= 3 && registerValues["name"].length >= 3) {
             let registrationRequest = new FAJAX();
             registrationRequest.open("post", "duck/API/users");
             registrationRequest.onload = () => changePage("login-page");
-            registrationRequest.send(registerValues);
+            registrationRequest.send(JSON.stringify(registerValues));
         } else {
             alert("Username or password is not valid");
         }
