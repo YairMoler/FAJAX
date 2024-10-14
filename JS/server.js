@@ -8,9 +8,11 @@ try {
                 if (!isIdInURL(fajax.URL)) {
                     console.log("get without id");
                     DATABASEGET(urlRequest);
+                    return sendResponse(200, get(urlRequest));
                 } else {
                     console.log("get with id");
                     DATABASEGETBYID(urlRequest, id);
+                    return sendResponse(200, getByID(urlRequest, id));
                 }
                 break;
             case "post":
@@ -18,16 +20,20 @@ try {
                     if (urlRequest === "validation") {
                         console.log("validation");
                         DATABASEVALIDATION(fajax.body);
+                        return sendResponse(200, validation(fajax.body));
                     } else {
                         console.log("post");
                         DATABASSEPOST(urlRequest, fajax.body);
+
+                        return sendResponse(200);
                     }
-                } else sendResponse("error");
+                } else return sendResponse(400);
                 break;
             case "put":
                 if (isIdInURL(fajax.URL)) {
                     console.log("put");
                     DATABASEPUT(urlRequest, id, fajax.body);
+                    return sendResponse();
                 } else sendResponse("error");
             case "delete":
                 if (isIdInURL(fajax.URL)) {
