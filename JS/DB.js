@@ -39,28 +39,31 @@ class Database {
         return arrOfIds;
     }
     getAvailableId() {
-        const availableId = JSON.parse(localStorage.getItem("IDsIndex")) + 1;
-        JSON.stringify();
+        const availableId = JSON.parse(localStorage.getItem('IDsIndex')) + 1
+        localStorage.setItem('IDsIndex', JSON.stringify(availableId))
+        return availableId   
     }
 
     addItem(obj) {
-        //TODO: ID Adds a new item in the database
-        this.contentArr.push(obj);
-
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
+        //Adds a new item in the database
+        obj.id = this.getAvailableId()
+        this.contentArr.push(obj)
+        
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
     }
 
     editItem(id, property, content) {
-        // changes a property of item.
-        const obj = this.getById(id);
-        const index = this.contentArr.indexOf(obj);
-        obj[property] = content; // update
-        this.contentArr[index] = obj;
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
+        // TODO: changes a property of item.
+        const obj = this.getById(id)
+        const index = this.contentArr.indexOf(obj)
+        obj[property] = content // update
+        this.contentArr[index] = obj
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
+
     }
 
     validation(obj) {
-        return this.contentArr.includes(obj);
+        
         //TODO: return true or false, if obj exists  in array of content
     }
 
@@ -101,5 +104,7 @@ localStorage.setItem(
 // let db = new DatabaseRecipes()
 // db.put(1, 'name', 'Italian People')
 // console.log(localStorage.getItem('recipes'))
-const DBUsers = new DatabaseUsers();
-const DBRecipes = new DatabaseRecipes();
+const DBUsers = new DatabaseUsers()
+const DBRecipes = new DatabaseRecipes()
+console.log(JSON.parse(localStorage.getItem('recipes')))
+console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])))
