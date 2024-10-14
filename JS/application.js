@@ -1,19 +1,3 @@
-localStorage.setItem(
-    "myItem",
-    JSON.stringify([{
-        name: "Pizza",
-        type: "Dessert",
-        time: "1H",
-        steps: ["1", "2", "3", "4"],
-    },
-    {
-        name: "French people",
-        type: "Brunch",
-        time: "10m",
-        steps: ["1. put in oven", "2. cook until well done", "3. yummy", "4. another step, step on the french"],
-    }])
-);
-
 function capitalize(str) {
     return str[0].toUpperCase() + str.slice(1)
 }
