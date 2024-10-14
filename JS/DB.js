@@ -40,19 +40,20 @@ class Database {
     }
     getAvailableId() {
         const availableId = JSON.parse(localStorage.getItem('IDsIndex')) + 1
-        JSON.stringify()
-        
+        localStorage.setItem('IDsIndex', JSON.stringify(availableId))
+        return availableId   
     }
 
     addItem(obj) {
-        //TODO: ID Adds a new item in the database
+        //Adds a new item in the database
+        obj.id = this.getAvailableId()
         this.contentArr.push(obj)
         
         localStorage.setItem(this.type, JSON.stringify(this.contentArr))
     }
 
     editItem(id, property, content) {
-        // changes a property of item.
+        // TODO: changes a property of item.
         const obj = this.getById(id)
         const index = this.contentArr.indexOf(obj)
         obj[property] = content // update
@@ -62,7 +63,7 @@ class Database {
     }
 
     validation(obj) {
-        return this.contentArr.includes(obj)
+        
         //TODO: return true or false, if obj exists  in array of content
     }
 
@@ -106,3 +107,5 @@ localStorage.setItem(
 // console.log(localStorage.getItem('recipes'))
 const DBUsers = new DatabaseUsers()
 const DBRecipes = new DatabaseRecipes()
+console.log(JSON.parse(localStorage.getItem('recipes')))
+console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])))
