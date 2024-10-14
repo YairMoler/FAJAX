@@ -39,16 +39,15 @@ class Database {
         return arrOfIds;
     }
     getAvailableId() {
-        const arrOfIds = this.getArrOfIds(this.type);
-        for (let i = 0; true; i++) {
-            if (!arrOfIds.includes(i)) return i;
-        }
+        const availableId = JSON.parse(localStorage.getItem('IDsIndex')) + 1
+        JSON.stringify()
+        
     }
 
     addItem(obj) {
         //TODO: ID Adds a new item in the database
         this.contentArr.push(obj)
-
+        
         localStorage.setItem(this.type, JSON.stringify(this.contentArr))
     }
 
@@ -87,6 +86,8 @@ class DatabaseRecipes extends Database {
 
 localStorage.clear();
 
+localStorage.setItem("IDsIndex", '1')
+
 localStorage.setItem(
     "recipes",
     JSON.stringify([
@@ -100,6 +101,8 @@ localStorage.setItem(
     ])
 );
 
-let db = new DatabaseRecipes()
-db.put(1, 'name', 'Italian People')
-console.log(localStorage.getItem('recipes'))
+// let db = new DatabaseRecipes()
+// db.put(1, 'name', 'Italian People')
+// console.log(localStorage.getItem('recipes'))
+const DBUsers = new DatabaseUsers()
+const DBRecipes = new DatabaseRecipes()
