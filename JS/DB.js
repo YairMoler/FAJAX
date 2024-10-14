@@ -47,7 +47,7 @@ class Database {
     addItem(obj) {
         //Adds a new item in the database
         if (!this.validation(obj)) {
-            console.log("hi");
+            console.log("obj: ", obj);
             let newItem;
             if (this.type === "users") {
                 newItem = new User(this.getAvailableId(), obj.name, obj.password);
@@ -56,7 +56,7 @@ class Database {
             }
 
             this.contentArr.push(newItem);
-
+            console.log(newItem);
             localStorage.setItem(this.type, JSON.stringify(this.contentArr));
         }
     }
@@ -80,7 +80,7 @@ class Database {
                     }
                 }
             }
-            if (flag === true) {
+            if (flag) {
                 return true;
             }
         }
@@ -128,9 +128,6 @@ localStorage.setItem(
 const DBUsers = new DatabaseUsers();
 const DBRecipes = new DatabaseRecipes();
 
-console.log(DBRecipes.editItem(1, "name", "AMong us"));
-console.log(localStorage.getItem("recipes"));
-console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])));
 let ram = { name: "ram", password: "123" };
 DBUsers.addItem(ram);
 
