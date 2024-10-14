@@ -47,16 +47,14 @@ class Database {
     addItem(obj) {
         //Adds a new item in the database
         if (!this.validation(obj)) {
-            console.log("obj: ", obj);
             let newItem;
             if (this.type === "users") {
                 newItem = new User(this.getAvailableId(), obj.name, obj.password);
             } else {
-                newItem = new Recipe(this.getAvailableId(), obj.name, obj.password);
+                newItem = new Recipe(this.getAvailableId(), obj.name, obj.type, obj.time, obj.steps);
             }
 
             this.contentArr.push(newItem);
-            console.log(newItem);
             localStorage.setItem(this.type, JSON.stringify(this.contentArr));
         }
     }
@@ -81,7 +79,7 @@ class Database {
                 }
             }
             if (flag) {
-                return true;
+                return item.id;
             }
         }
     }
@@ -115,7 +113,7 @@ localStorage.clear();
 
 localStorage.setItem("IDsIndex", "1");
 
-localStorage.setItem("users", JSON.stringify([new User(0, "Yair", "abc")]));
+localStorage.setItem("users", JSON.stringify([new User(1, "Yair", "abc")]));
 
 localStorage.setItem(
     "recipes",
@@ -139,7 +137,7 @@ const DBRecipes = new DatabaseRecipes();
 let ram = { name: "ram", password: "123" };
 DBUsers.addItem(ram);
 
-console.log(DBUsers.validation({ name: "Yair", password: "abc" }));
+console.log(DBUsers.validation({ name: "ram", password: "123" }));
 
 function compare(a, b) {
     if (typeof a === typeof b) {

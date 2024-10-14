@@ -17,7 +17,7 @@ try {
                     if (urlRequest === "validation") {
                         return sendResponse(fajax, 200, neededDB.validation(fajax.body));
                     } else {
-                        neededDB.addItem(fajax.body);
+                        neededDB.addItem(JSON.parse(fajax.body));
                         return sendResponse(fajax, 200);
                     }
                 } else return sendResponse(fajax, 400);
@@ -45,15 +45,12 @@ try {
 
     // duck\/API\/(users|userAdd|recipes)\/*[0-9]*
     function handleURL(URL) {
-        console.log("URL: ", URL);
         if (URL.match(/duck\/API\/userValidation\/*[0-9]*/)) {
-            console.log("URL: ", URL);
             return "validation";
         } else if (URL.match(/duck\/API\/users\/*[0-9]*/)) {
             console.log("URL: ", URL);
             return "users";
         } else if (URL.match(/duck\/API\/recipes\/*[0-9]*/)) {
-            console.log("URL: ", URL);
             return "recipes";
         } else {
             throw new Error("400");
