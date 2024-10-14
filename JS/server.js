@@ -68,8 +68,10 @@ try {
 }
 
 // temporary
-function sendResponse() {
-    console.log("error");
+function sendResponse(fajax, status, responseText) {
+    fajax.status = status;
+    fajax.responseText = responseText;
+    return fajax;
 }
 
 let fakeRequest = {
