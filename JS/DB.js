@@ -46,10 +46,19 @@ class Database {
 
     addItem(obj) {
         //Adds a new item in the database
-        obj.id = this.getAvailableId();
-        this.contentArr.push(obj);
+        if (!this.validation(obj)) {
+            console.log("hi");
+            let newItem;
+            if (this.type === "users") {
+                newItem = new User(this.getAvailableId(), obj.name, obj.password);
+            } else {
+                newItem = new Recipe(this.getAvailableId(), obj.name, obj.password);
+            }
 
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
+            this.contentArr.push(newItem);
+
+            localStorage.setItem(this.type, JSON.stringify(this.contentArr));
+        }
     }
 
     editItem(id, property, content) {
@@ -78,7 +87,7 @@ class Database {
     }
 
     delete(id) {
-        //TODO: remove item from array of content
+        let obj = this.getById(id);
     }
 }
 
@@ -122,6 +131,8 @@ const DBRecipes = new DatabaseRecipes();
 console.log(DBRecipes.editItem(1, "name", "AMong us"));
 console.log(localStorage.getItem("recipes"));
 console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])));
+let ram = { name: "ram", password: "123" };
+DBUsers.addItem(ram);
 
 console.log(DBUsers.validation({ name: "Yair", password: "abc" }));
 
