@@ -3,45 +3,58 @@ try {
         const urlRequest = handleURL(fajax.URL);
         const id = isIdInURL(fajax.URL) ? getIdFromURL(fajax.URL) : null;
         // Obj --> ?
-        if (!(urlRequest === "recipes"));
-        switch (fajax.type) {
-            case "get":
-                if (!isIdInURL(fajax.URL)) {
-                    console.log("get without id");
-                    DATABASEGET(urlRequest);
-                    return sendResponse(200, DBUsers.get(urlRequest));
-                } else {
-                    console.log("get with id");
-                    DATABASEGETBYID(urlRequest, id);
-                    return sendResponse(200, DBUsers.getByID(urlRequest, id));
-                }
-                break;
-            case "post":
-                if (!isIdInURL(fajax.URL)) {
-                    if (urlRequest === "validation") {
-                        console.log("validation");
-                        DATABASEVALIDATION(fajax.body);
-                        return sendResponse(200, DBUsers.validation(fajax.body));
+        if (!(urlRequest === "recipes")) {
+            switch (fajax.type) {
+                case "get":
+                    if (!isIdInURL(fajax.URL)) {
+                        return sendResponse(this, 200, DBUsers.get(urlRequest));
                     } else {
-                        console.log("post");
-                        DATABASSEPOST(urlRequest, fajax.body);
-                        DBUsers.addItem(fajax.body);
-                        return sendResponse(200);
+                        return sendResponse(this, 200, DBUsers.getByID(urlRequest, id));
                     }
-                } else return sendResponse(400);
-                break;
-            case "put":
-                if (isIdInURL(fajax.URL)) {
-                    console.log("put");
-                    DBUsers.editItem(id, body.property, body.content);
-                    return sendResponse(200);
-                } else sendResponse(400);
-            case "delete":
-                if (isIdInURL(fajax.URL)) {
-                    console.log("delete");
-                    DATABASEDELETE(urlRequest, id);
-                } else sendResponse("error");
-                break;
+
+                case "post":
+                    if (!isIdInURL(fajax.URL)) {
+                        if (urlRequest === "validation") {
+                            return sendResponse(this, 200, DBUsers.validation(fajax.body));
+                        } else {
+                            DBUsers.addItem(fajax.body);
+                            return sendResponse(this, 200);
+                        }
+                    } else return sendResponse(this, 400);
+
+                case "put":
+                    if (isIdInURL(fajax.URL)) {
+                        DBUsers.editItem(id, body.property, body.content);
+                        return sendResponse(this, 200);
+                    } else sendResponse(this, 400);
+                case "delete":
+                    if (isIdInURL(fajax.URL)) {
+                        DBUsers.delete(id);
+                    } else return sendResponse(this, 200);
+            }
+        } else {
+            switch (fajax.type) {
+                case "get":
+                    if (!isIdInURL(fajax.URL)) {
+                        return sendResponse(this, 200, DBRecipes.get(urlRequest));
+                    } else {
+                        return sendResponse(this, 200, DBRecipes.getByID(urlRequest, id));
+                    }
+                case "post":
+                    if (!isIdInURL(fajax.URL)) {
+                        DBRecipes.addItem(fajax.body);
+                        return sendResponse(this, 200);
+                    } else return sendResponse(this, 400);
+                case "put":
+                    if (isIdInURL(fajax.URL)) {
+                        DBRecipes.editItem(id, body.property, body.content);
+                        return sendResponse(this, 200);
+                    } else sendResponse(this, 400);
+                case "delete":
+                    if (isIdInURL(fajax.URL)) {
+                        DBRecipes.delete(id);
+                    } else return sendResponse(this, 200);
+            }
         }
     }
 
@@ -67,7 +80,7 @@ try {
             console.log("URL: ", URL);
             return "recipes";
         } else {
-            throw new Error("404");
+            throw new Error("400");
         }
     }
 } catch (e) {
@@ -80,11 +93,3 @@ function sendResponse(fajax, status, responseText = null) {
     fajax.responseText = responseText;
     return fajax;
 }
-
-let fakeRequest = {
-    type: "delete",
-    URL: "duck/API/recipes/2",
-    body: "hi",
-};
-
-console.log(handleRequest(fakeRequest));

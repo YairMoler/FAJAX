@@ -10,3 +10,10 @@ class FAJAX {
         this.response = transferToServer(this);
     }
 }
+
+let request = new FAJAX();
+request.open("get", "duck/API/users");
+request.onload = () => {
+    console.log(request);
+};
+request.send();

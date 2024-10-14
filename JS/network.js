@@ -6,5 +6,5 @@ function transferToServer(fajaxRequest) {
         console.log("onload is empty");
     }
 
-    return response
+    return response;
 }
