@@ -88,6 +88,14 @@ class Database {
 
     delete(id) {
         let obj = this.getById(id);
+        console.log("this.contentArr: ", this.contentArr);
+        let index = this.contentArr.indexOf(obj);
+        if (index >= 0) {
+            let newArr = this.contentArr.splice(index, 1);
+            console.log("newArr: ", newArr);
+            console.log("this.contentArr: ", this.contentArr);
+            localStorage.setItem(this.type, JSON.stringify(this.contentArr));
+        }
     }
 }
 
