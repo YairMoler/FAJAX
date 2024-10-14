@@ -10,16 +10,15 @@ function handleChangeRegister(event) {
     console.log(event.target.value);
 }
 
-function tempFAJAX1() {
-    changePage("login-page");
-}
-
 // to-do: try regex
 function register(event) {
     event.preventDefault();
     if (registerValues["new-password"] === registerValues["confirm-password"]) {
         if (registerValues["new-password"].length >= 3 && registerValues["confirm-password"].length >= 3) {
-            tempFAJAX1(registerValues);
+            let registrationRequest = new FAJAX();
+            registrationRequest.open("post", "duck/API/users");
+            registrationRequest.onload = () => changePage("login-page");
+            registrationRequest.send(registerValues);
         } else {
             alert("Username or password is not valid");
         }
