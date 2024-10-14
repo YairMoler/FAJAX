@@ -5,10 +5,6 @@ class User {
         this.password = password;
         this.recipes = [];
     }
-
-    addRecipe(id) {
-        this.recipes.push(id);
-    }
 }
 
 class Recipe {
@@ -49,14 +45,14 @@ class Database {
         }
     }
 
-    post(obj) {
+    addItem(obj) {
         //TODO: ID Adds a new item in the database
         this.contentArr.push(obj)
 
         localStorage.setItem(this.type, JSON.stringify(this.contentArr))
     }
 
-    put(id, property, content) {
+    editItem(id, property, content) {
         // changes a property of item.
         const obj = this.getById(id)
         const index = this.contentArr.indexOf(obj)
@@ -67,6 +63,7 @@ class Database {
     }
 
     validation(obj) {
+        return this.contentArr.includes(obj)
         //TODO: return true or false, if obj exists  in array of content
     }
 
@@ -75,9 +72,18 @@ class Database {
     }
 }
 
-class DatabaseUsers extends Database {}
+class DatabaseUsers extends Database {
+    constructor(){
+        super('users')
+    }
+}
 
-class DatabaseRecipes extends Database {}
+class DatabaseRecipes extends Database {
+    constructor(){
+        super('recipes')
+    }
+    
+}
 
 localStorage.clear();
 
@@ -94,6 +100,6 @@ localStorage.setItem(
     ])
 );
 
-let db = new Database("recipes")
+let db = new DatabaseRecipes()
 db.put(1, 'name', 'Italian People')
 console.log(localStorage.getItem('recipes'))
