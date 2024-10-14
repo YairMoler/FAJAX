@@ -65,8 +65,8 @@ try {
 
 // temporary
 function sendResponse(fajax, status, response = null) {
-    console.log('response: ', response);
-    
+    console.log("response: ", response);
+
     console.log(fajax, status, response);
     fajax.status = status;
     fajax.response = response;
