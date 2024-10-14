@@ -20,7 +20,7 @@ class Recipe {
 class Database {
     constructor(type) {
         this.type = type;
-        this.contentArr = JSON.parse(localStorage.getItem(this.type))
+        this.contentArr = JSON.parse(localStorage.getItem(this.type));
     }
 
     get() {
@@ -73,21 +73,20 @@ class Database {
 }
 
 class DatabaseUsers extends Database {
-    constructor(){
-        super('users')
+    constructor() {
+        super("users");
     }
 }
 
 class DatabaseRecipes extends Database {
-    constructor(){
-        super('recipes')
+    constructor() {
+        super("recipes");
     }
-    
 }
 
 localStorage.clear();
 
-localStorage.setItem("IDsIndex", '1')
+localStorage.setItem("IDsIndex", "1");
 
 localStorage.setItem(
     "recipes",

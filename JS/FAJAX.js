@@ -7,6 +7,6 @@ class FAJAX {
     }
     send(body = null) {
         this.body = body;
-        this.response = transferToServer(this)
+        this.response = transferToServer(this);
     }
 }

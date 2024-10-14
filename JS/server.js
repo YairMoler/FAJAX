@@ -3,14 +3,17 @@ try {
         const urlRequest = handleURL(fajax.URL);
         const id = isIdInURL(fajax.URL) ? getIdFromURL(fajax.URL) : null;
         // Obj --> ?
+        if (!(urlRequest === "recipes"));
         switch (fajax.type) {
             case "get":
                 if (!isIdInURL(fajax.URL)) {
                     console.log("get without id");
                     DATABASEGET(urlRequest);
+                    return sendResponse(200, DBUsers.get(urlRequest));
                 } else {
                     console.log("get with id");
                     DATABASEGETBYID(urlRequest, id);
+                    return sendResponse(200, DBUsers.getByID(urlRequest, id));
                 }
                 break;
             case "post":
@@ -18,17 +21,21 @@ try {
                     if (urlRequest === "validation") {
                         console.log("validation");
                         DATABASEVALIDATION(fajax.body);
+                        return sendResponse(200, DBUsers.validation(fajax.body));
                     } else {
                         console.log("post");
                         DATABASSEPOST(urlRequest, fajax.body);
+                        DBUsers.addItem(fajax.body);
+                        return sendResponse(200);
                     }
-                } else sendResponse("error");
+                } else return sendResponse(400);
                 break;
             case "put":
                 if (isIdInURL(fajax.URL)) {
                     console.log("put");
-                    DATABASEPUT(urlRequest, id, fajax.body);
-                } else sendResponse("error");
+                    DBUsers.editItem(id, body.property, body.content);
+                    return sendResponse(200);
+                } else sendResponse(400);
             case "delete":
                 if (isIdInURL(fajax.URL)) {
                     console.log("delete");
@@ -68,8 +75,10 @@ try {
 }
 
 // temporary
-function sendResponse() {
-    console.log("error");
+function sendResponse(fajax, status, responseText = null) {
+    fajax.status = status;
+    fajax.responseText = responseText;
+    return fajax;
 }
 
 let fakeRequest = {
