@@ -8,10 +8,6 @@ function handleChangeLogIn(event) {
     console.log(event.target.value);
 }
 
-function tempFAJAX() {
-    changePage("application");
-}
-
 // to-do: try regex
 function logIn(event) {
     event.preventDefault();
