@@ -11,7 +11,7 @@ function showRecipe(recipeArrStr) {
                 newHTML += `<h2>${capitalize(key)}: ${recipeObj[key]}<h2>`;
             } else {
                 for (let step of recipeObj["steps"]) newHTML += `<p>${step}</p>`;
-            }
+            }   
         }
     }
 

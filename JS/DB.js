@@ -21,46 +21,79 @@ class Recipe {
     }
 }
 
-function dataBaseGet(content) {
-    // Returns entire array of type content
+class Database {
+    constructor(type) {
+        this.type = type;
+        this.contentArr = JSON.parse(localStorage.getItem(this.type))
+    }
+
+    get() {
+        // Returns entire array of type content
+        return JSON.parse(localStorage.getItem(this.type));
+    }
+    getById(id) {
+        // returns a specific item with given ID
+        for (let obj of this.contentArr) {
+            if (obj.id === id) return obj;
+        }
+    }
+    getArrOfIds() {
+        const arrOfIds = [];
+        for (let element of this.contentArr) arrOfIds.push(element.id);
+        return arrOfIds;
+    }
+    getAvailableId() {
+        const arrOfIds = this.getArrOfIds(this.type);
+        for (let i = 0; true; i++) {
+            if (!arrOfIds.includes(i)) return i;
+        }
+    }
+
+    post(obj) {
+        //TODO: ID Adds a new item in the database
+        this.contentArr.push(obj)
+
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
+    }
+
+    put(id, property, content) {
+        // changes a property of item.
+        const obj = this.getById(id)
+        const index = this.contentArr.indexOf(obj)
+        obj[property] = content // update
+        this.contentArr[index] = obj
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
+
+    }
+
+    validation(obj) {
+        //TODO: return true or false, if obj exists  in array of content
+    }
+
+    delete(id) {
+        //TODO: remove item from array of content
+    }
 }
 
-function dataBaseGetId(content, id) {
-    // returns a specific item with given ID
-}
+class DatabaseUsers extends Database {}
 
-function getAvailableId(content){
+class DatabaseRecipes extends Database {}
 
-}
-
-function dataBasePost(content, obj) {
-    // Adds a new item in the database
-}
-
-function dataBasePut(content, id, property) {
-    // changes a property of item.
-}
-
-function dataBaseValidation(content, obj) {
-    // return true or false, if obj exists  in array of content
-}
-
-function dataBaseDelete(content, id) {
-    // remove item from array of content
-}
+localStorage.clear();
 
 localStorage.setItem(
     "recipes",
-    JSON.stringify([{
-        name: "Pizza",
-        type: "Dessert",
-        time: "1H",
-        steps: ["1", "2", "3", "4"],
-    },
-    {
-        name: "French people",
-        type: "Brunch",
-        time: "10m",
-        steps: ["1. put in oven", "2. cook until well done", "3. yummy", "4. another step, step on the french"],
-    }])
+    JSON.stringify([
+        new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."]),
+        new Recipe(1, "French people", "Brunch", "10m", [
+            "1. put in oven",
+            "2. cook until well done",
+            "3. yummy",
+            "4. another step, step on the french",
+        ]),
+    ])
 );
+
+let db = new Database("recipes")
+db.put(1, 'name', 'Italian People')
+console.log(localStorage.getItem('recipes'))
