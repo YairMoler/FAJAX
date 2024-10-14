@@ -118,7 +118,9 @@ localStorage.setItem(
 // console.log(localStorage.getItem('recipes'))
 const DBUsers = new DatabaseUsers();
 const DBRecipes = new DatabaseRecipes();
-console.log(JSON.parse(localStorage.getItem("recipes")));
+
+console.log(DBRecipes.editItem(1, "name", "AMong us"));
+console.log(localStorage.getItem("recipes"));
 console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])));
 
 console.log(DBUsers.validation({ name: "Yair", password: "abc" }));
