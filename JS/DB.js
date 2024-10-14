@@ -39,32 +39,42 @@ class Database {
         return arrOfIds;
     }
     getAvailableId() {
-        const availableId = JSON.parse(localStorage.getItem('IDsIndex')) + 1
-        localStorage.setItem('IDsIndex', JSON.stringify(availableId))
-        return availableId   
+        const availableId = JSON.parse(localStorage.getItem("IDsIndex")) + 1;
+        localStorage.setItem("IDsIndex", JSON.stringify(availableId));
+        return availableId;
     }
 
     addItem(obj) {
         //Adds a new item in the database
-        obj.id = this.getAvailableId()
-        this.contentArr.push(obj)
-        
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
+        obj.id = this.getAvailableId();
+        this.contentArr.push(obj);
+
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
     }
 
     editItem(id, property, content) {
         // TODO: changes a property of item.
-        const obj = this.getById(id)
-        const index = this.contentArr.indexOf(obj)
-        obj[property] = content // update
-        this.contentArr[index] = obj
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
-
+        const obj = this.getById(id);
+        const index = this.contentArr.indexOf(obj);
+        obj[property] = content; // update
+        this.contentArr[index] = obj;
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
     }
 
     validation(obj) {
-        
-        //TODO: return true or false, if obj exists  in array of content
+        for (let item of this.contentArr) {
+            let flag = true;
+            for (let property in item) {
+                if (property !== "id") {
+                    if (!compare(item[property], obj[property])) {
+                        flag = false;
+                    }
+                }
+            }
+            if (flag === true) {
+                return true;
+            }
+        }
     }
 
     delete(id) {
@@ -75,6 +85,12 @@ class Database {
 class DatabaseUsers extends Database {
     constructor() {
         super("users");
+    }
+
+    validation(obj) {
+        for (let item in this.contentArr) {
+            if (item.name === obj.username && item.password === obj.password) return item.id;
+        }
     }
 }
 
@@ -104,7 +120,23 @@ localStorage.setItem(
 // let db = new DatabaseRecipes()
 // db.put(1, 'name', 'Italian People')
 // console.log(localStorage.getItem('recipes'))
-const DBUsers = new DatabaseUsers()
-const DBRecipes = new DatabaseRecipes()
-console.log(JSON.parse(localStorage.getItem('recipes')))
-console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])))
+const DBUsers = new DatabaseUsers();
+const DBRecipes = new DatabaseRecipes();
+console.log(JSON.parse(localStorage.getItem("recipes")));
+console.log(DBRecipes.validation(new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."])));
+
+function compare(a, b) {
+    if (typeof a === typeof b) {
+        if (typeof a === "object") {
+            let l;
+            if (a.length >= b.length) {
+                l = a.length;
+            } else {
+                l = b.length;
+            }
+            if (a.filter((x) => b.includes(x)).length === l) {
+                return true;
+            } else return false;
+        } else return a === b;
+    } else return false;
+}
