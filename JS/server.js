@@ -68,7 +68,7 @@ try {
 }
 
 // temporary
-function sendResponse(fajax, status, responseText) {
+function sendResponse(fajax, status, responseText = null) {
     fajax.status = status;
     fajax.responseText = responseText;
     return fajax;
