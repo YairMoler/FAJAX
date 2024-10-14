@@ -20,7 +20,7 @@ class Recipe {
 class Database {
     constructor(type) {
         this.type = type;
-        this.contentArr = JSON.parse(localStorage.getItem(this.type))
+        this.contentArr = JSON.parse(localStorage.getItem(this.type));
     }
 
     get() {
@@ -47,23 +47,22 @@ class Database {
 
     addItem(obj) {
         //TODO: ID Adds a new item in the database
-        this.contentArr.push(obj)
+        this.contentArr.push(obj);
 
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
     }
 
     editItem(id, property, content) {
         // changes a property of item.
-        const obj = this.getById(id)
-        const index = this.contentArr.indexOf(obj)
-        obj[property] = content // update
-        this.contentArr[index] = obj
-        localStorage.setItem(this.type, JSON.stringify(this.contentArr))
-
+        const obj = this.getById(id);
+        const index = this.contentArr.indexOf(obj);
+        obj[property] = content; // update
+        this.contentArr[index] = obj;
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
     }
 
     validation(obj) {
-        return this.contentArr.includes(obj)
+        return this.contentArr.includes(obj);
         //TODO: return true or false, if obj exists  in array of content
     }
 
@@ -73,16 +72,15 @@ class Database {
 }
 
 class DatabaseUsers extends Database {
-    constructor(){
-        super('users')
+    constructor() {
+        super("users");
     }
 }
 
 class DatabaseRecipes extends Database {
-    constructor(){
-        super('recipes')
+    constructor() {
+        super("recipes");
     }
-    
 }
 
 localStorage.clear();
@@ -100,6 +98,6 @@ localStorage.setItem(
     ])
 );
 
-let db = new DatabaseRecipes()
-db.put(1, 'name', 'Italian People')
-console.log(localStorage.getItem('recipes'))
+let db = new DatabaseRecipes();
+db.put(1, "name", "Italian People");
+console.log(localStorage.getItem("recipes"));
