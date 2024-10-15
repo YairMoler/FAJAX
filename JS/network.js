@@ -3,7 +3,7 @@ function transferToServer(fajaxRequest) {
     try {
         fajaxRequest.onload();
     } catch (e) {
-        console.log("onload is incorrect");
+        console.log("onload is incorrect " + e);
     }
 
     return response;

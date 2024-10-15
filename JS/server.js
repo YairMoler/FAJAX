@@ -17,14 +17,13 @@ try {
                     if (urlRequest === "validation") {
                         return sendResponse(fajax, 200, neededDB.validation(fajax.body));
                     } else {
-                        neededDB.addItem(JSON.parse(fajax.body));
-                        return sendResponse(fajax, 200);
+                        return sendResponse(fajax, 200, neededDB.addItem(JSON.parse(fajax.body)));
                     }
                 } else return sendResponse(fajax, 400);
 
             case "put":
                 if (isIdInURL(fajax.URL)) {
-                    neededDB.editItem(id, body.property, body.content);
+                    neededDB.addRecipe(id, fajax.body);
                     return sendResponse(fajax, 200);
                 } else sendResponse(fajax, 400);
             case "delete":

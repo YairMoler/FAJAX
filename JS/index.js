@@ -11,3 +11,4 @@ changePage("login-page");
 
 let loginValues = {};
 let registerValues = {};
+let recipeCreatorValues = {};

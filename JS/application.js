@@ -29,17 +29,22 @@ function showRecipe(recipeArr) {
 function showAllUserRecipes() {
     let userRequest = new FAJAX();
     userRequest.open("get", `duck/API/users/${currentUserId}`);
+
     userRequest.onload = () => {
         let myRecipes = [];
         let myRecipesId = userRequest.response.recipes;
+
         for (let item of myRecipesId) {
             let recipeRequest = new FAJAX();
             recipeRequest.open("get", `duck/API/recipes/${item}`);
+
             recipeRequest.onload = () => {
                 myRecipes.push(recipeRequest.response);
             };
+
             recipeRequest.send();
         }
+
         showRecipe(myRecipes);
     };
 
@@ -47,4 +52,13 @@ function showAllUserRecipes() {
 }
 
 let currentUserId = sessionStorage.getItem("current user");
+
 showAllUserRecipes();
+
+function openRecipeCreator() {
+    let recipeCreatorDisplay = document.getElementById("recipe-creator-display");
+    recipeCreatorDisplay.innerHTML = "";
+    let recipeCreator = document.getElementById("recipe-creator");
+    let clone = recipeCreator.content.cloneNode(true);
+    display.appendChild(clone);
+}
