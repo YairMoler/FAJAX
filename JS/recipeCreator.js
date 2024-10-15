@@ -9,7 +9,6 @@ document.getElementById("steps").addEventListener("change", (event) => handleCha
 function handleChangeRecipeCreator(event) {
     event.preventDefault();
     recipeCreatorValues[event.target.id] = event.target.value;
-    console.log(event.target.value);
 }
 
 function splitStepsLine() {
@@ -20,12 +19,10 @@ function splitStepsLine() {
 function createRecipe(event) {
     event.preventDefault();
     splitStepsLine();
-    console.log(recipeCreatorValues);
     let newRecipeRequest = new FAJAX();
     newRecipeRequest.open("post", "duck/API/recipes");
     newRecipeRequest.onload = () => {
         let recipeID = newRecipeRequest.response;
-        console.log("recipeID: ", recipeID);
         let addRecipeRequest = new FAJAX();
         addRecipeRequest.open("put", `duck/API/users/${currentUserId}`);
         addRecipeRequest.onload = () => {
