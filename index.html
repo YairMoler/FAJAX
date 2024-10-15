@@ -12,6 +12,7 @@
         <!-- Login page -->
 
         <template id="login-page">
+            <div class="page-container" id="login-page-container">
             <form onsubmit="logIn(event)" action="">
                 <label for="username">username</label>
                 <input type="text" id="name" name="username" value="" />
@@ -20,12 +21,14 @@
                 <button onsubmit="logIn(event)">Log in</button>
             </form>
             <button onclick="changePage('registration-page')">register</button>
+            </div>
             <script src="./JS/login.js"></script>
         </template>
 
         <!-- registration page -->
 
         <template id="registration-page">
+            <div class="page-container" id="registration-page-container">
             <form onsubmit="register(event)" action="">
                 <label for="new-username">username</label>
                 <input type="text" id="name" name="new-username" value="" />
@@ -35,38 +38,40 @@
                 <input type="password" id="confirm-password" name="confirm-password" />
                 <button onclick="register(event)">register</button>
             </form>
+        </div>
             <script src="./JS/registration.js"></script>
         </template>
 
         <template id="application">
-            <button onclick="logOut()">log out</button>
-            <input id="search" type="text" />
-            <div id="application-text">
-                <p>
-                    Recipes will go here
-                    <!-- Rendering Text from JS Here -->
-                </p>
-            </div>
-            <div id="recipe-creator-display"><button onclick="openRecipeCreator()">Create a recipe</button></div>
+            <div class="page-container" id="application-container">
+                <button onclick="logOut()">log out</button>
+                <input id="search" type="text" />
+                <div id="application-text">
+                    <p>
+                        Recipes will go here
+                        <!-- Rendering Text from JS Here -->
+                    </p>
+                </div>
+                <div id="recipe-creator-display"><button onclick="openRecipeCreator()">Create a recipe</button></div>
 
-            <template id="recipe-creator">
-                <form onsubmit="createRecipe(event)" action="">
-                    <label for="name">insert the name of the recipe</label><br />
-                    <input type="text" id="name" name="name" required /><br />
-                    <label for="type">insert the type of the recipe</label><br />
-                    <input type="text" id="type" name="type" required /><br />
-                    <label for="time">insert the time</label><br />
-                    <input type="text" id="time" name="time" required /><br />
-                    <label for="steps">enter the steps for the recipe. please put each step in a new line.</label><br />
-                    <textarea name="steps" id="steps" required rows="10"></textarea><br />
-                    <button onclick="createRecipe(event)">Create</button>
-                </form>
-                <script src="./JS/recipeCreator.js"></script>
-            </template>
+                <template id="recipe-creator">
+                    <form onsubmit="createRecipe(event)" action="">
+                        <label for="name">insert the name of the recipe</label><br />
+                        <input type="text" id="name" name="name" required /><br />
+                        <label for="type">insert the type of the recipe</label><br />
+                        <input type="text" id="type" name="type" required /><br />
+                        <label for="time">insert the time</label><br />
+                        <input type="text" id="time" name="time" required /><br />
+                        <label for="steps">enter the steps for the recipe. please put each step in a new line.</label><br />
+                        <textarea name="steps" id="steps" required rows="10"></textarea><br />
+                        <button onclick="createRecipe(event)">Create</button>
+                    </form>
+                    <script src="./JS/recipeCreator.js"></script>
+                </template>
 
-            <script src="./JS/application.js"></script>
-        </template>
-    </body>
+        <script src="./JS/application.js"></script>
+    </template>
+</body>
 
     <script src="./JS/DB.js"></script>
     <script src="./JS/index.js"></script>
