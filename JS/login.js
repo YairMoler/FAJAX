@@ -15,7 +15,7 @@ function logIn(event) {
         let loginRequest = new FAJAX();
         loginRequest.open("post", "duck/API/userValidation");
         loginRequest.onload = () => {
-            console.log("HELO", loginRequest.response)
+            console.log("HELO", loginRequest.response);
             if (loginRequest.response) {
                 sessionStorage.setItem("current user", loginRequest.response);
                 changePage("application");

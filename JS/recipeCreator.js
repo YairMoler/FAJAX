@@ -30,6 +30,7 @@ function createRecipe(event) {
         addRecipeRequest.open("put", `duck/API/users/${currentUserId}`);
         addRecipeRequest.onload = () => {
             changePage("application");
+            showAllUserRecipes();
         };
         addRecipeRequest.send(recipeID);
     };

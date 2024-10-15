@@ -107,7 +107,9 @@ class DatabaseUsers extends Database {
 
     addRecipe(id, recipeId) {
         let user = this.getById(id);
-        user.Recipes.push(recipeId);
+        let userIndex = this.contentArr.indexOf(user);
+        this.contentArr[userIndex].recipes.push(recipeId);
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
     }
 }
 
