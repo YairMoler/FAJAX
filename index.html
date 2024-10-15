@@ -1,62 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="CSS/index.css">
-</head>
-<body>
-    <div id="display"></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="CSS/index.css" />
+    </head>
+    <body>
+        <div id="display"></div>
 
-    <!-- Login page -->
+        <!-- Login page -->
 
-    <template id="login-page">
-        <form onsubmit="logIn(event)" action="">
-            <label for="username">username</label>
-            <input type="text" id="name" name="username" value="">
-            <label for="password">password</label>
-            <input type="password" id="password" name="password" value="">
-            <button onsubmit="logIn(event)">Log in</button>
-        </form>
-        <button onclick="changePage('registration-page')">register</button>
-        <script src="./JS/login.js"></script>
-    </template>
+        <template id="login-page">
+            <div class="page-container" id="login-page-container">
+            <form onsubmit="logIn(event)" action="">
+                <label for="username">username</label>
+                <input type="text" id="name" name="username" value="" />
+                <label for="password">password</label>
+                <input type="password" id="password" name="password" value="" />
+                <button onsubmit="logIn(event)">Log in</button>
+            </form>
+            <button onclick="changePage('registration-page')">register</button>
+            </div>
+            <script src="./JS/login.js"></script>
+        </template>
 
+        <!-- registration page -->
 
-    <!-- registration page -->
-
-    <template id="registration-page">
-        <form onsubmit="register(event)"  action="">
-            <label for="new-username">username</label>
-            <input type="text" id="name" name="new-username" value="">
-            <label for="new-password">password</label>
-            <input type="password" id="password" name="new-password" value="">
-            <label for="confirm-password">confirm-password</label>
-            <input type="password" id="confirm-password" name="confirm-password">
-            <button onclick="register(event)">register</button>
-        </form>
-        <script src="./JS/registration.js"></script>
-    </template>
-
-    <template id="application">
-        <button onclick="logOut()">log out</button>
-        <input id="search" type="text" >
-        <div id="application-text">
-            <p>Recipes will go here
-                <!-- Rendering Text from JS Here -->
-            </p>
-            
+        <template id="registration-page">
+            <div class="page-container" id="registration-page-container">
+            <form onsubmit="register(event)" action="">
+                <label for="new-username">username</label>
+                <input type="text" id="name" name="new-username" value="" />
+                <label for="new-password">password</label>
+                <input type="password" id="password" name="new-password" value="" />
+                <label for="confirm-password">confirm-password</label>
+                <input type="password" id="confirm-password" name="confirm-password" />
+                <button onclick="register(event)">register</button>
+            </form>
         </div>
-        <button>Add Recipe</button>
+            <script src="./JS/registration.js"></script>
+        </template>
 
-        <script src="./JS/application.js"></script>
-    </template>
-</body>
+        <template id="application">
+            <div class="page-container" id="application-container">
+                <button onclick="logOut()">log out</button>
+                <input id="search" type="text" />
+                <div id="application-text">
+                    <p>
+                        Recipes will go here
+                        <!-- Rendering Text from JS Here -->
+                    </p>
+                </div>
+                <button>Add Recipe</button>
+            </div>
+            <script src="./JS/application.js"></script>
+        </template>
+    </body>
 
-<script src="./JS/DB.js"></script>
-<script src="./JS/index.js"></script>
-<script src="./JS/server.js"></script>
-<script src="/JS/network.js"></script>
-<script src="./JS/FAJAX.js"></script>
+    <script src="./JS/DB.js"></script>
+    <script src="./JS/index.js"></script>
+    <script src="./JS/server.js"></script>
+    <script src="/JS/network.js"></script>
+    <script src="./JS/FAJAX.js"></script>
 </html>

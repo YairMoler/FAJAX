@@ -39,7 +39,7 @@ class Database {
         return arrOfIds;
     }
     getAvailableId() {
-        const availableId = JSON.parse(localStorage.getItem("IDsIndex")) + 1;
+        const availableId = JSON.parse(localStorage.getItem("IDsIndex")) ? JSON.parse(localStorage.getItem("IDsIndex")) + 1 : 1;
         localStorage.setItem("IDsIndex", JSON.stringify(availableId));
         return availableId;
     }
@@ -109,36 +109,6 @@ class DatabaseRecipes extends Database {
     }
 }
 
-localStorage.clear();
-
-localStorage.setItem("IDsIndex", "1");
-
-localStorage.setItem("users", JSON.stringify([new User(1, "Yair", "abc")]));
-
-localStorage.setItem(
-    "recipes",
-    JSON.stringify([
-        new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."]),
-        new Recipe(1, "French people", "Brunch", "10m", [
-            "1. put in oven",
-            "2. cook until well done",
-            "3. yummy",
-            "4. another step, step on the french",
-        ]),
-    ])
-);
-
-// let db = new DatabaseRecipes()
-// db.put(1, 'name', 'Italian People')
-// console.log(localStorage.getItem('recipes'))
-const DBUsers = new DatabaseUsers();
-const DBRecipes = new DatabaseRecipes();
-
-let ram = { name: "ram", password: "123" };
-DBUsers.addItem(ram);
-
-console.log(DBUsers.validation({ name: "ram", password: "123" }));
-
 function compare(a, b) {
     if (typeof a === typeof b) {
         if (typeof a === "object") {
@@ -154,3 +124,26 @@ function compare(a, b) {
         } else return a === b;
     } else return false;
 }
+
+function initiateLocalStorage() {
+    if (!localStorage.length) {
+        localStorage.setItem("users", JSON.stringify([new User(1, "Yair", "abc")]));
+        localStorage.setItem(
+            "recipes",
+            JSON.stringify([
+                new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."]),
+                new Recipe(1, "French people", "Brunch", "10m", [
+                    "1. put in oven",
+                    "2. cook until well done",
+                    "3. yummy",
+                    "4. another step, step on the french",
+                ]),
+            ])
+        );
+    }
+}
+
+initiateLocalStorage();
+
+const DBUsers = new DatabaseUsers();
+const DBRecipes = new DatabaseRecipes();
