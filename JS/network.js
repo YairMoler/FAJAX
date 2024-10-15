@@ -1,6 +1,7 @@
 function transferToServer(fajaxRequest) {
+    let response;
     try {
-        const response = handleRequest(fajaxRequest);
+        response = handleRequest(fajaxRequest);
     } catch (e) {
         console.log(e);
     }
