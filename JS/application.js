@@ -39,12 +39,14 @@ function showAllUserRecipes() {
                 myRecipes.push(recipeRequest.response);
             };
             recipeRequest.send();
+            console.log(recipeRequest)
         }
         showRecipe(myRecipes);
     };
 
+
     userRequest.send();
 }
 
-let currentUserId = sessionStorage.getItem("current user");
+currentUserId = sessionStorage.getItem("current user");
 showAllUserRecipes();

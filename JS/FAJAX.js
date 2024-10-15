@@ -13,14 +13,14 @@ class FAJAX {
     }
 }
 
-let request = new FAJAX();
-request.open("post", "duck/API/recipes");
-request.onload = () => {
-    console.log(request);
-};
-request.send(JSON.stringify({
-    name: "Yair",
-    type: "Dessert",
-    time: "-1H",
-    steps: ["מחבר שלוש מילים", "מחמם על אש קטנה", "ורץ מהר להביא", "בצל מהשכנה", "מוסיף שני חרוזים", "קצת פלפל, קצת מלח", "מערבב שלושה כבשים", "וזורק קובייה של קרח"]
-}));
+// let request = new FAJAX();
+// request.open("post", "duck/API/recipes");
+// request.onload = () => {
+//     console.log(request);
+// };
+// request.send(JSON.stringify({
+//     name: "Yair",
+//     type: "Dessert",
+//     time: "-1H",
+//     steps: ["מחבר שלוש מילים", "מחמם על אש קטנה", "ורץ מהר להביא", "בצל מהשכנה", "מוסיף שני חרוזים", "קצת פלפל, קצת מלח", "מערבב שלושה כבשים", "וזורק קובייה של קרח"]
+// }));

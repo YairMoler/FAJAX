@@ -39,7 +39,7 @@ class Database {
         return arrOfIds;
     }
     getAvailableId() {
-        const availableId = JSON.parse(localStorage.getItem("IDsIndex")) ? JSON.parse(localStorage.getItem("IDsIndex")) + 1 : 1;
+        const availableId = JSON.parse(localStorage.getItem("IDsIndex")) ? JSON.parse(localStorage.getItem("IDsIndex")) + 1 : 2;
         localStorage.setItem("IDsIndex", JSON.stringify(availableId));
         return availableId;
     }
@@ -131,8 +131,8 @@ function initiateLocalStorage() {
         localStorage.setItem(
             "recipes",
             JSON.stringify([
-                new Recipe(0, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."]),
-                new Recipe(1, "French people", "Brunch", "10m", [
+                new Recipe(1, "Pizza", "Dessert", "30m", ["1.", "2.", "3.", "4."]),
+                new Recipe(2, "French people", "Brunch", "10m", [
                     "1. put in oven",
                     "2. cook until well done",
                     "3. yummy",
@@ -142,6 +142,7 @@ function initiateLocalStorage() {
         );
     }
 }
+
 
 initiateLocalStorage();
 

@@ -1,3 +1,5 @@
+let currentUserId;
+
 const changePage = (pageName) => {
     let display = document.getElementById("display");
     display.innerHTML = "";

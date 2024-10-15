@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="CSS/index.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" />
     </head>
     <body>
         <div id="display"></div>
@@ -13,14 +16,14 @@
 
         <template id="login-page">
             <div class="page-container" id="login-page-container">
-            <form onsubmit="logIn(event)" action="">
-                <label for="username">username</label>
-                <input type="text" id="name" name="username" value="" />
-                <label for="password">password</label>
-                <input type="password" id="password" name="password" value="" />
-                <button onsubmit="logIn(event)">Log in</button>
-            </form>
-            <button onclick="changePage('registration-page')">register</button>
+                <form onsubmit="logIn(event)" action="">
+                    <label for="username">username</label>
+                    <input type="text" id="name" name="username" value="" />
+                    <label for="password">password</label>
+                    <input type="password" id="password" name="password" value="" />
+                    <button onsubmit="logIn(event)">Log in</button>
+                </form>
+                <button onclick="changePage('registration-page')">register</button>
             </div>
             <script src="./JS/login.js"></script>
         </template>
@@ -29,16 +32,16 @@
 
         <template id="registration-page">
             <div class="page-container" id="registration-page-container">
-            <form onsubmit="register(event)" action="">
-                <label for="new-username">username</label>
-                <input type="text" id="name" name="new-username" value="" />
-                <label for="new-password">password</label>
-                <input type="password" id="password" name="new-password" value="" />
-                <label for="confirm-password">confirm-password</label>
-                <input type="password" id="confirm-password" name="confirm-password" />
-                <button onclick="register(event)">register</button>
-            </form>
-        </div>
+                <form onsubmit="register(event)" action="">
+                    <label for="new-username">username</label>
+                    <input type="text" id="name" name="new-username" value="" />
+                    <label for="new-password">password</label>
+                    <input type="password" id="password" name="new-password" value="" />
+                    <label for="confirm-password">confirm-password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" />
+                    <button onclick="register(event)">register</button>
+                </form>
+            </div>
             <script src="./JS/registration.js"></script>
         </template>
 
