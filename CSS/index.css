@@ -40,4 +40,13 @@ p {
   border: 1px solid gold;
   border-radius: 1px;
   box-shadow: 0.5px 0.5px darkgoldenrod;
+}
+
+#application-text {
+  color: aqua;
+  text-shadow: 0 0 3px black;
+}
+
+#application-container {
+  max-height: 1000px;
 }/*# sourceMappingURL=index.css.map */

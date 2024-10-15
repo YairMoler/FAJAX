@@ -50,6 +50,11 @@ p {
     }
 }
 
+#application-text {
+    color: aqua;
+    text-shadow: 0 0 3px black;
+}
+
 #login-page-container {
 }
 
@@ -57,6 +62,7 @@ p {
 }
 
 #application-container {
+    max-height: 1000px;
 }
 
 .recipe {
