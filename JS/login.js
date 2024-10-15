@@ -5,7 +5,6 @@ document.getElementById("password").addEventListener("change", (event) => handle
 function handleChangeLogIn(event) {
     event.preventDefault();
     loginValues[event.target.id] = event.target.value;
-    console.log(event.target.value);
 }
 
 // to-do: try regex
@@ -15,7 +14,6 @@ function logIn(event) {
         let loginRequest = new FAJAX();
         loginRequest.open("post", "duck/API/userValidation");
         loginRequest.onload = () => {
-            console.log("HELO", loginRequest.response)
             if (loginRequest.response) {
                 sessionStorage.setItem("current user", loginRequest.response);
                 changePage("application");

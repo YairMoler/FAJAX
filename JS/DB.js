@@ -3,7 +3,7 @@ class User {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.recipes = [0, 1];
+        this.recipes = [];
     }
 }
 
@@ -48,14 +48,16 @@ class Database {
         //Adds a new item in the database
         if (!this.validation(obj)) {
             let newItem;
+            let newId = this.getAvailableId();
             if (this.type === "users") {
-                newItem = new User(this.getAvailableId(), obj.name, obj.password);
+                newItem = new User(newId, obj.name, obj.password);
             } else {
-                newItem = new Recipe(this.getAvailableId(), obj.name, obj.type, obj.time, obj.steps);
+                newItem = new Recipe(newId, obj.name, obj.type, obj.time, obj.steps);
             }
 
             this.contentArr.push(newItem);
             localStorage.setItem(this.type, JSON.stringify(this.contentArr));
+            return newId;
         }
     }
 
@@ -86,12 +88,9 @@ class Database {
 
     delete(id) {
         let obj = this.getById(id);
-        console.log("this.contentArr: ", this.contentArr);
         let index = this.contentArr.indexOf(obj);
         if (index >= 0) {
             let newArr = this.contentArr.splice(index, 1);
-            console.log("newArr: ", newArr);
-            console.log("this.contentArr: ", this.contentArr);
             localStorage.setItem(this.type, JSON.stringify(this.contentArr));
         }
     }
@@ -100,6 +99,13 @@ class Database {
 class DatabaseUsers extends Database {
     constructor() {
         super("users");
+    }
+
+    addRecipe(id, recipeId) {
+        let user = this.getById(id);
+        let userIndex = this.contentArr.indexOf(user);
+        this.contentArr[userIndex].recipes.push(recipeId);
+        localStorage.setItem(this.type, JSON.stringify(this.contentArr));
     }
 }
 

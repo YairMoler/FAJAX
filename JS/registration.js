@@ -7,7 +7,6 @@ document.getElementById("confirm-password").addEventListener("change", (event) =
 function handleChangeRegister(event) {
     event.preventDefault();
     registerValues[event.target.id] = event.target.value;
-    console.log(event.target.value);
 }
 
 // to-do: try regex

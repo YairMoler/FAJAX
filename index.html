@@ -55,11 +55,26 @@
                         <!-- Rendering Text from JS Here -->
                     </p>
                 </div>
-                <button>Add Recipe</button>
-            </div>
-            <script src="./JS/application.js"></script>
-        </template>
-    </body>
+                <div id="recipe-creator-display"><button onclick="openRecipeCreator()">Create a recipe</button></div>
+
+                <template id="recipe-creator">
+                    <form onsubmit="createRecipe(event)" action="">
+                        <label for="name">insert the name of the recipe</label><br />
+                        <input type="text" id="name" name="name" required /><br />
+                        <label for="type">insert the type of the recipe</label><br />
+                        <input type="text" id="type" name="type" required /><br />
+                        <label for="time">insert the time</label><br />
+                        <input type="text" id="time" name="time" required /><br />
+                        <label for="steps">enter the steps for the recipe. please put each step in a new line.</label><br />
+                        <textarea name="steps" id="steps" required rows="10"></textarea><br />
+                        <button onclick="createRecipe(event)">Create</button>
+                    </form>
+                    <script src="./JS/recipeCreator.js"></script>
+                </template>
+
+        <script src="./JS/application.js"></script>
+    </template>
+</body>
 
     <script src="./JS/DB.js"></script>
     <script src="./JS/index.js"></script>
